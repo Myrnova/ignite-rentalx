@@ -1,0 +1,36 @@
+Arguments: 
+  C:\Program Files (x86)\Nodist\v-x64\16.10.0\node.exe C:\Program Files (x86)\Nodist\bin\node_modules\yarn\bin\yarn.js init
+
+PATH: 
+  C:\Python39\Scripts\;C:\Python39\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Nodist\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\debora.cavallari\AppData\Local\Microsoft\WindowsApps;C:\Users\debora.cavallari\AppData\Local\Programs\Microsoft VS Code\bin;C:\ProgramData\debora.cavallari\GitHubDesktop\bin;C:\Users\debora.cavallari\AppData\Local\Programs\Git\cmd;C:\ProgramData\chocoportable\bin;C:\Users\debora.cavallari\.dotnet\tools;C:\Users\debora.cavallari\AppData\Local\Programs\Hyper\resources\bin;C:\Users\debora.cavallari\AppData\Local\gitkraken\bin
+
+Yarn version: 
+  1.22.11
+
+Node version: 
+  16.10.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Program Files (x86)\Nodist\bin\node_modules\yarn\lib\cli.js:137023:13)
+      at Interface.emit (node:events:390:28)
+      at Interface._ttyWrite (node:readline:1081:16)
+      at ReadStream.onkeypress (node:readline:288:10)
+      at ReadStream.emit (node:events:390:28)
+      at emitKeys (node:internal/readline/utils:358:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
+      at ReadStream.emit (node:events:390:28)
+      at addChunk (node:internal/streams/readable:315:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
