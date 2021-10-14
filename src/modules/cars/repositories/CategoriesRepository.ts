@@ -7,13 +7,24 @@ import {
 class CategoriesRepository implements ICategoriesRepository {
     private categories: Category[]
 
-    constructor() {
+    private constructor() {
         this.categories = []
     }
 
+    // #region Singleton Pattern
+    private static INSTANCE: CategoriesRepository
+
+    public static getInstance(): CategoriesRepository {
+        if (!CategoriesRepository.INSTANCE)
+            CategoriesRepository.INSTANCE = new CategoriesRepository()
+
+        return CategoriesRepository.INSTANCE
+    }
+    // #endregion
+
     create({ name, description }: ICreateCategoryDTO): void {
         const category = new Category()
-        Object.assign(category, { name, description })
+        Object.assign(category, { name, description, created_at: new Date() })
         this.categories.push(category)
     }
 

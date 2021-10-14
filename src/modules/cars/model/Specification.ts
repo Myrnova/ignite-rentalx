@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 
-class Category {
+class Specification {
     id?: string
     name: string
     description: string
@@ -8,9 +8,7 @@ class Category {
 
     constructor() {
         if (!this.id) this.id = uuidv4()
-
-        if (!this.created_at) this.created_at = new Date()
     }
 }
 
-export { Category }
+export { Specification }
