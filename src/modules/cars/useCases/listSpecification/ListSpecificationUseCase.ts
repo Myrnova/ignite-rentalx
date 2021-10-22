@@ -1,11 +1,12 @@
-import { Category } from '../../model/Category'
-import { ICategoriesRepository } from '../../repositories/interface/ICategoriesRepository'
+import { Specification } from '../../entities/Specification'
+import { ISpecificationRepository } from '../../repositories/interface/ISpecificationRepository'
 
 class ListSpecificationUseCase {
-    constructor(private categoriesRepository: ICategoriesRepository) {}
+    constructor(private specificationRepository: ISpecificationRepository) {}
 
-    execute(): Category[] {
-        return this.categoriesRepository.list()
+    execute(): Specification[] {
+        console.log('teste')
+        return this.specificationRepository.list()
     }
 }
 
