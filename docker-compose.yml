@@ -22,6 +22,10 @@ services:
       - 9229:9229 
      volumes:
       - .:/usr/app
+      - /usr/app/node_modules/       
+      # https://stackoverflow.com/questions/29181032/add-a-volume-to-docker-but-exclude-a-sub-folder#answer-37898591
+      # https://stackoverflow.com/questions/41027833/bcrypt-and-docker-bcrypt-lib-node-invalid-elf-header
+      # https://towardsdatascience.com/the-complete-guide-to-docker-volumes-1a06051d2cce
      links:
       - database
      depends_on: 
@@ -29,4 +33,7 @@ services:
 
 volumes:
     pgdata: 
-        driver: local
+        driver: local   
+  
+    
+       

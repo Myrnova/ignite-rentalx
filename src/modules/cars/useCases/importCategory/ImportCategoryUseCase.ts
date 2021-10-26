@@ -1,15 +1,20 @@
 import csvParse from 'csv-parse'
 import fs from 'fs'
+import { inject, injectable } from 'tsyringe'
 
+import { AppError } from '../../../../errors/AppError'
 import { ICategoryRepository } from '../../repositories/interface/ICategoryRepository'
 
 interface IImportCategory {
     name: string
     description: string
 }
-
+@injectable()
 class ImportCategoryUseCase {
-    constructor(private categoryRepository: ICategoryRepository) {}
+    constructor(
+        @inject('CategoryRepository')
+        private categoryRepository: ICategoryRepository
+    ) {}
 
     private loadCategories(
         file: Express.Multer.File
@@ -38,16 +43,17 @@ class ImportCategoryUseCase {
     }
 
     async execute(file: Express.Multer.File): Promise<void> {
+        if (!file) throw new AppError('CSV File not provided!')
         const categories = await this.loadCategories(file)
 
         // using async on map makes the return unnecessary
         categories.map(async (category) => {
             const { name, description } = category
 
-            const existCategory = this.categoryRepository.findByName(name)
+            const existCategory = await this.categoryRepository.findByName(name)
 
             if (!existCategory)
-                this.categoryRepository.create({ name, description })
+                await this.categoryRepository.create({ name, description })
         })
     }
 }
