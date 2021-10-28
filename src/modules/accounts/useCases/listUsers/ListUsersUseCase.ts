@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 
-import { User } from '../../entities/User'
-import { IUserRepository } from '../../repositories/interface/IUserRepository'
+import { User } from '@modules/accounts/infra/typeorm/entities/User'
+import { IUserRepository } from '@modules/accounts/repositories/IUserRepository'
 
 @injectable()
 class ListUsersUseCase {
