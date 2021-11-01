@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid'
+
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO'
 import { User } from '@modules/accounts/infra/typeorm/entities/User'
 
@@ -26,7 +28,8 @@ class UserRepositoryInMemory implements IUserRepository {
             driver_license,
             email,
             name,
-            password
+            password,
+            id: uuidv4()
         })
 
         this.users.push(user)

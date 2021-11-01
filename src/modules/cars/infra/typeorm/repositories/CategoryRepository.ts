@@ -13,13 +13,15 @@ class CategoryRepository implements ICategoryRepository {
         this.repository = getRepository(Category)
     }
 
-    async create({ name, description }: ICreateCategoryDTO): Promise<void> {
+    async create({ name, description }: ICreateCategoryDTO): Promise<Category> {
         const category = this.repository.create({
             name,
             description
         })
 
         await this.repository.save(category)
+
+        return category
     }
 
     async list(): Promise<Category[]> {
@@ -31,6 +33,12 @@ class CategoryRepository implements ICategoryRepository {
         const category = await this.repository.findOne({
             name
         })
+
+        return category
+    }
+
+    async findById(id: string): Promise<Category> {
+        const category = await this.repository.findOne(id)
 
         return category
     }

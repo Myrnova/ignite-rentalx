@@ -1,15 +1,17 @@
 import {
     Column,
     Entity,
-    PrimaryColumn,
     CreateDateColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    PrimaryGeneratedColumn,
+    OneToMany
 } from 'typeorm'
-import { v4 as uuidv4 } from 'uuid'
+
+import { Car } from './Car'
 
 @Entity('categories')
 class Category {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn('uuid')
     id?: string
 
     @Column()
@@ -24,9 +26,8 @@ class Category {
     @UpdateDateColumn()
     updated_at?: Date
 
-    constructor() {
-        if (!this.id) this.id = uuidv4()
-    }
+    @OneToMany(() => Car, (car) => car.category)
+    car: Car
 }
 
 export { Category }

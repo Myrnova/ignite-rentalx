@@ -1,23 +1,23 @@
 import {
     Column,
-    Entity,
     CreateDateColumn,
+    Entity,
     PrimaryGeneratedColumn
 } from 'typeorm'
 
-@Entity('specifications')
-class Specification {
+@Entity('car_images')
+class CarImages {
     @PrimaryGeneratedColumn('uuid')
-    id?: string
+    id: string
 
     @Column()
-    name: string
+    image_name: string
 
     @Column()
-    description: string
+    car_id: string
 
     @CreateDateColumn()
-    created_at?: Date
+    created_at: Date
 }
 
-export { Specification }
+export { CarImages }

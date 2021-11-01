@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --exit-child --poll --respawn --transpile-only --inspect=0.0.0.0:9229 --ignore-watch node_modules src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "yarn test --watch",
+    "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

@@ -16,14 +16,9 @@ describe('Create Category', () => {
     })
 
     it('should be able to create a new category', async () => {
-        const category = {
+        const category = await createCategoryUseCase.execute({
             name: 'Category Test',
             description: 'Category description Test'
-        }
-
-        await createCategoryUseCase.execute({
-            name: category.name,
-            description: category.description
         })
 
         const categoryCreated = await categoryRepositoryInMemory.findByName(

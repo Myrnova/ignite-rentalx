@@ -1,15 +1,14 @@
 import {
     Column,
     Entity,
-    PrimaryColumn,
     CreateDateColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    PrimaryGeneratedColumn
 } from 'typeorm'
-import { v4 as uuidv4 } from 'uuid'
 
 @Entity('users')
 class User {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn('uuid')
     id?: string
 
     @Column()
@@ -27,7 +26,7 @@ class User {
     @Column()
     avatar: string
 
-    @Column()
+    @Column({ default: false })
     isAdmin: boolean
 
     @CreateDateColumn()
@@ -35,10 +34,6 @@ class User {
 
     @UpdateDateColumn()
     updated_at?: Date
-
-    constructor() {
-        if (!this.id) this.id = uuidv4()
-    }
 }
 
 export { User }
