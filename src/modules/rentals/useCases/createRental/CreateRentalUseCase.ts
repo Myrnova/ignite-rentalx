@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe'
 
+import { ICarRepository } from '@modules/cars/repositories/ICarRepository'
 import { ICreateRentalDTO } from '@modules/rentals/dtos/ICreateRentalDTO'
 import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental'
 import { IRentalRepository } from '@modules/rentals/repositories/IRentalRepository'
@@ -12,13 +13,18 @@ class CreateRentalUseCase {
         @inject('RentalRepository')
         private rentalRepository: IRentalRepository,
         @inject('DateProvider')
-        private dateProvider: IDateProvider
+        private dateProvider: IDateProvider,
+        @inject('CarRepository')
+        private carRepository: ICarRepository
     ) {}
 
     async execute({
+        rental_id,
         car_id,
         expected_return_date,
-        user_id
+        user_id,
+        total,
+        end_date
     }: ICreateRentalDTO): Promise<Rental> {
         const minimumHour = 24
 
@@ -45,10 +51,14 @@ class CreateRentalUseCase {
             throw new AppError('Invalid return time!')
 
         const rental = await this.rentalRepository.create({
+            rental_id,
             user_id,
             car_id,
-            expected_return_date
+            expected_return_date,
+            total,
+            end_date
         })
+        await this.carRepository.updateAvailable(car_id, false)
 
         return rental
     }

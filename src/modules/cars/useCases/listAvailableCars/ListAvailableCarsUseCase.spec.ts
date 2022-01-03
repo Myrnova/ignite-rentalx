@@ -7,7 +7,7 @@ let listAvailableCarUseCase: ListAvailableCarsUseCase
 let carsRepositoryInMemory: CarRepositoryInMemory
 let categoryRepositoryInMemory: CategoryRepositoryInMemory
 
-describe('Create Car', () => {
+describe('List Available Car', () => {
     beforeEach(() => {
         carsRepositoryInMemory = new CarRepositoryInMemory()
         categoryRepositoryInMemory = new CategoryRepositoryInMemory()

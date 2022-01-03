@@ -19,22 +19,42 @@ class RentalRepositoryInMemory implements IRentalRepository {
         )
     }
     async create({
+        id,
         car_id,
         expected_return_date,
-        user_id
+        user_id,
+        start_date,
+        created_at,
+        end_date,
+        total
     }: ICreateRentalDTO): Promise<Rental> {
         const rental = new Rental()
         Object.assign(rental, {
             car_id,
             expected_return_date,
             user_id,
-            id: uuidv4(),
-            start_date: new Date(),
-            created_at: new Date()
+            id: id || uuidv4(),
+            start_date: start_date || new Date(),
+            created_at: created_at || new Date(),
+            end_date,
+            total,
+            updated_at: id && new Date()
         })
         this.rentals.push(rental)
 
         return rental
+    }
+
+    async findById(id: string): Promise<Rental> {
+        const rental = this.rentals.find((rental) => rental.id === id)
+        return rental
+    }
+
+    async findByUser(user_id: string): Promise<Rental[]> {
+        const rentals = this.rentals.filter(
+            (rental) => rental.user_id === user_id
+        )
+        return rentals
     }
 }
 
