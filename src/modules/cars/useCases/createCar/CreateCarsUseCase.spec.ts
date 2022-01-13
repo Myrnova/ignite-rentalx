@@ -49,17 +49,17 @@ describe('Create Car', () => {
         expect(car).toHaveProperty('id')
     })
 
-    it('should not be able to create a car if there is already another one with same license plate ', () => {
-        expect(async () => {
-            await createCarUseCase.execute({
-                name: 'Name car',
-                brand: 'Brand Test',
-                daily_rate: 100,
-                description: 'Description car',
-                fine_amount: 60,
-                license_plate: 'ABC-1234'
-            })
-            await createCarUseCase.execute({
+    it('should not be able to create a car if there is already another one with same license plate ', async () => {
+        await createCarUseCase.execute({
+            name: 'Name car',
+            brand: 'Brand Test',
+            daily_rate: 100,
+            description: 'Description car',
+            fine_amount: 60,
+            license_plate: 'ABC-1234'
+        })
+        await expect(
+            createCarUseCase.execute({
                 name: 'Name car 2',
                 brand: 'Brand Test',
                 daily_rate: 100,
@@ -67,7 +67,7 @@ describe('Create Car', () => {
                 fine_amount: 60,
                 license_plate: 'ABC-1234'
             })
-        }).rejects.toBeInstanceOf(AppError)
+        ).rejects.toEqual(new AppError('Car already exists!'))
     })
     it('should be able to create a car available by default', async () => {
         const car = await createCarUseCase.execute({
@@ -83,8 +83,8 @@ describe('Create Car', () => {
     })
 
     it('should not be able to create a new car if the passed category_id is not a valid one', async () => {
-        expect(async () => {
-            await createCarUseCase.execute({
+        await expect(
+            createCarUseCase.execute({
                 name: 'Name car 2',
                 brand: 'Brand Test',
                 daily_rate: 100,
@@ -93,6 +93,6 @@ describe('Create Car', () => {
                 license_plate: 'ABC-1234',
                 category_id: 'category'
             })
-        }).rejects.toBeInstanceOf(AppError)
+        ).rejects.toEqual(new AppError('Category with that ID was not found!'))
     })
 })

@@ -8,6 +8,7 @@ import createConnection from '@shared/infra/typeorm'
 let connection: Connection
 describe('List Category Controller', () => {
     beforeAll(async () => {
+        jest.setTimeout(5000000)
         connection = await createConnection()
 
         await connection.runMigrations()

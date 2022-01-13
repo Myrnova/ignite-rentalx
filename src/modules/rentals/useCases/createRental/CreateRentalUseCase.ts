@@ -19,7 +19,7 @@ class CreateRentalUseCase {
     ) {}
 
     async execute({
-        rental_id,
+        id,
         car_id,
         expected_return_date,
         user_id,
@@ -51,7 +51,7 @@ class CreateRentalUseCase {
             throw new AppError('Invalid return time!')
 
         const rental = await this.rentalRepository.create({
-            rental_id,
+            id,
             user_id,
             car_id,
             expected_return_date,
